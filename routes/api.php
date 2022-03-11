@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\dataApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,6 @@ Route::get('/users', function () {
 Route::get('users/{id}', function ($id) {
     return '<p>Here user id is:<b>' . $id . '</b></p>';
 });
+
+// Static User data from controller
+Route::get('/data', [dataApi::class, 'articleData']);
