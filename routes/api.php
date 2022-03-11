@@ -21,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/users', function () {
     return "<h3>Hello, this is Laravel Web API & route from api.php, URL path will be different to access it.</h3>";
 });
+
+Route::get('users/{id}', function ($id) {
+    return '<p>Here user id is:<b>' . $id . '</b></p>';
+});
