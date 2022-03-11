@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/users', function () {
+    return "<h3>Hello, this is Laravel Web API & route from api.php, URL path will be different to access it.</h3>";
+});
