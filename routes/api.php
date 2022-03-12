@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dataApi;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,6 @@ Route::get('users/{id}', function ($id) {
 
 // Static User data from controller
 Route::get('/data', [dataApi::class, 'articleData']);
+
+// Public Routes
+Route::get('/employee', [EmployeeController::class, 'index']);
