@@ -58,15 +58,15 @@ Route::post('/login', [UserController::class, 'login']);
 // });
 
 // Partially Public Routes
-Route::get('/employee', [EmployeeController::class, 'index']);
-Route::get('/employee/{id}', [EmployeeController::class, 'show']);
+// Route::get('/employee', [EmployeeController::class, 'index']);
+// Route::get('/employee/{id}', [EmployeeController::class, 'show']);
 Route::get('/employee/search/{name}', [EmployeeController::class, 'srearch']);
 
 // Partially Protected Routes
 Route::middleware(['auth:sanctum']) -> group(function () {
-    Route::post('/employee', [EmployeeController::class, 'store']);
-    Route::put('/employee/{id}', [EmployeeController::class, 'update']);
-    Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
+    // Route::post('/employee', [EmployeeController::class, 'store']);
+    // Route::put('/employee/{id}', [EmployeeController::class, 'update']);
+    // Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
     Route::post('/logout', [UserController::class, 'logout']);
 });
 
@@ -74,3 +74,6 @@ Route::middleware(['auth:sanctum']) -> group(function () {
 Route::middleware('auth:sanctum') -> get('/user', function (Request $request) {
     return $request -> user();
 });
+
+// Single Route for CRUD
+Route::resource('employee', EmployeeController::class);
