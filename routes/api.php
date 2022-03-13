@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dataApi;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,9 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::get('/users', function () {
     return "<h3>Hello, this is Laravel Web API & route from api.php, URL path will be different to access it.</h3>";
@@ -32,9 +33,14 @@ Route::get('users/{id}', function ($id) {
 Route::get('/data', [dataApi::class, 'articleData']);
 
 // Public Routes
-Route::get('/employee', [EmployeeController::class, 'index']);
-Route::get('/employee/{id}', [EmployeeController::class, 'show']);
-Route::post('/employee', [EmployeeController::class, 'store']);
-Route::put('/employee/{id}', [EmployeeController::class, 'update']);
-Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
-Route::get('/employee/search/{name}', [EmployeeController::class, 'srearch']);
+Route::post('/register', [UserController::class, 'register']);
+// Route::get('/employee', [EmployeeController::class, 'index']);
+// Route::get('/employee/{id}', [EmployeeController::class, 'show']);
+// Route::post('/employee', [EmployeeController::class, 'store']);
+// Route::put('/employee/{id}', [EmployeeController::class, 'update']);
+// Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
+// Route::get('/employee/search/{name}', [EmployeeController::class, 'srearch']);
+
+// Protected Routs
+Route::middleware('auth:sanctum') -> get('/employee', [EmployeeController::class, 'index']);
+Route::middleware('auth:sanctum') -> get('/employee/{id}', [EmployeeController::class, 'show']);
