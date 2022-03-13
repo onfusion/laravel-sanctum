@@ -42,5 +42,16 @@ Route::post('/register', [UserController::class, 'register']);
 // Route::get('/employee/search/{name}', [EmployeeController::class, 'srearch']);
 
 // Protected Routs
-Route::middleware('auth:sanctum') -> get('/employee', [EmployeeController::class, 'index']);
-Route::middleware('auth:sanctum') -> get('/employee/{id}', [EmployeeController::class, 'show']);
+// Route::middleware('auth:sanctum') -> get('/employee', [EmployeeController::class, 'index']);
+// Route::middleware('auth:sanctum') -> get('/employee/{id}', [EmployeeController::class, 'show']);
+
+// Protected Routs Group
+Route::middleware(['auth:sanctum']) -> group(function () {
+    Route::get('/employee', [EmployeeController::class, 'index']);
+    Route::get('/employee/{id}', [EmployeeController::class, 'show']);
+    Route::post('/employee', [EmployeeController::class, 'store']);
+    Route::put('/employee/{id}', [EmployeeController::class, 'update']);
+    Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
+    Route::get('/employee/search/{name}', [EmployeeController::class, 'srearch']);
+    Route::post('/logout', [UserController::class, 'logout']);
+});

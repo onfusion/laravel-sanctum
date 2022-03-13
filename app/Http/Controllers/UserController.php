@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    // User Registration
     public function register(Request $request) {
         // Validate required fields
         $request -> validate([
@@ -31,5 +32,13 @@ class UserController extends Controller
             'user' => $user,
             'token' => $token
         ], 201);
+    }
+
+    // User Logout
+    public function logout() {
+        auth() -> user() -> tokens() -> delete();
+        return response([
+            'message' => 'Successfully Logged out...'
+        ]);
     }
 }
