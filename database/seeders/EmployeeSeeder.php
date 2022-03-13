@@ -18,7 +18,7 @@ class EmployeeSeeder extends Seeder
         $faker = Faker::create();
 
         // Loop here to insert recorde into DB
-        foreach(range(1, 25) as $value) {
+        foreach(range(1, 5) as $value) {
             DB::table('employees') -> insert([
                 'name' => $faker -> name(),
                 // 'email' => $faker -> safeEmail(),

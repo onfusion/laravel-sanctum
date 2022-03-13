@@ -35,7 +35,19 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // First validate & define the required fields
+        $request -> validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile' => 'required',
+            'gender' => 'required',
+            'age' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'address' => 'required'
+        ]);
+
+        return Employee::create($request -> all());
     }
 
     /**
@@ -46,7 +58,7 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        return Employee::find($id);
     }
 
     /**
@@ -69,7 +81,9 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $employee = Employee::find($id);
+        $employee -> update($request -> all());
+        return $employee;
     }
 
     /**
@@ -80,6 +94,17 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Employee::find($id) -> delete();
+    }
+
+    /**
+     * Search the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function srearch($name)
+    {
+        return Employee::where('name', $name) -> get();
     }
 }

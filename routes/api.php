@@ -33,3 +33,8 @@ Route::get('/data', [dataApi::class, 'articleData']);
 
 // Public Routes
 Route::get('/employee', [EmployeeController::class, 'index']);
+Route::get('/employee/{id}', [EmployeeController::class, 'show']);
+Route::post('/employee', [EmployeeController::class, 'store']);
+Route::put('/employee/{id}', [EmployeeController::class, 'update']);
+Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
+Route::get('/employee/search/{name}', [EmployeeController::class, 'srearch']);
