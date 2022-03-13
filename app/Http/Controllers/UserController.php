@@ -41,4 +41,32 @@ class UserController extends Controller
             'message' => 'Successfully Logged out...'
         ]);
     }
+
+    // User Login
+    public function login(Request $request) {
+        // Validate required fields
+        $request -> validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Find in the DB using where method
+        $user = User::where('email', $request -> email) -> first();
+
+        // Condition to verify $user
+        if(!$user || !Hash::check($request -> password, $user -> password)) {
+            return response([
+                'message' => 'Given credentials are incorrect...',
+            ], 401);
+        }
+
+        // Create Token
+        $token = $user -> createToken('mytoken') -> plainTextToken;
+
+        // Return response
+        return response ([
+            'user' => $user,
+            'token' => $token
+        ], 200);
+    }
 }

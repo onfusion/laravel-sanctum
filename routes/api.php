@@ -34,6 +34,7 @@ Route::get('/data', [dataApi::class, 'articleData']);
 
 // Public Routes
 Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
 // Route::get('/employee', [EmployeeController::class, 'index']);
 // Route::get('/employee/{id}', [EmployeeController::class, 'show']);
 // Route::post('/employee', [EmployeeController::class, 'store']);
