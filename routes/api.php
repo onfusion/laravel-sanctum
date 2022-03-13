@@ -69,3 +69,8 @@ Route::middleware(['auth:sanctum']) -> group(function () {
     Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
     Route::post('/logout', [UserController::class, 'logout']);
 });
+
+// All User List
+Route::middleware('auth:sanctum') -> get('/user', function (Request $request) {
+    return $request -> user();
+});
