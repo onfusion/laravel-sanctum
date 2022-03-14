@@ -20,14 +20,14 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>ID</td>
-                            <td>Name</td>
-                            <td>Email</td>
-                            <td>mobile</td>
-                            <td>gender</td>
-                            <td>age</td>
-                            <td>city</td>
+                        <tr v-for="(employee, index) in employees" :key="index">
+                            <td>{{employee.id}}</td>
+                            <td>{{employee.name}}</td>
+                            <td>{{employee.email}}</td>
+                            <td>{{employee.mobile}}</td>
+                            <td>{{employee.gender}}</td>
+                            <td>{{employee.age}}</td>
+                            <td>{{employee.city}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -40,7 +40,7 @@
     export default {
         data() {
             return {
-                employee: [],
+                employees: [],
                 api: 'http://localhost:8000/api/employee'
             }
         },
@@ -49,7 +49,8 @@
             // Fetch Api Data using axios
             console.log('Component mounted.')
             this.axios.get(this.api).then(res => {
-                console.log('Api data fetched');
+                // console.log(res);
+                this.employees = res.data;
             });
         }
     }
